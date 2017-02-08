@@ -62,7 +62,10 @@ function e($txt)
     .wrapper { width: 100%; }
     .card {
     }
-    .jumbotron { color: #333; }
+    .jumbotron {
+      color: #333;
+      border-radius: 0;
+    }
     .card-secondary {
       background-color: #AAA;
       border-color: #AAA;
