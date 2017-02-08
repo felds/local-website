@@ -12,9 +12,14 @@
 //     // ...
 //   ],
 // ];
+// $sandbox = [
+//   'link caption' => '//url',
+//   // ...
+// ];
 
 $clients = $clients ?? [];
-$tools = $tools ?? [];
+$tools   = $tools ?? [];
+$sandbox = $sandbox ?? [];
 
 /**
  * Escape special chars.
@@ -32,28 +37,38 @@ function e($txt)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Felds Dev Machine</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha256-SC9pI7daKIBEHzXq0JEtOr9yMl5V7yMMqoowsw8uzNs=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha256-rr9hHBQ43H7HSOmmNkxzQGazS/Khx+L8ZRHteEY1tQ4=" crossorigin="anonymous" />
+
     <style>
+
     :root {}
     html, body { min-height: 100%; }
     body {
-      background: whitesmoke;
+      background: dimgray;
+      color: white;
       display: flex;
       align-items: center;
+    }
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+    }
+    .row > * {
+      margin-bottom: 2rem;
     }
     .section {
       margin: 6rem 0;
     }
     .wrapper { width: 100%; }
     .card {
-      /*
-       * box-shadow: 0 0 5rem rgba(0,0,0,.125), 0 3rem 3rem -2rem rgba(0,0,0,.125);
-      */
-box-shadow: 0 2.5rem 1.5rem -1.5rem rgba(0,0,0,.125);
     }
+    .jumbotron { color: #333; }
     .card-secondary {
       background-color: #AAA;
       border-color: #AAA;
+    }
+    .card-inverse .card-link {
+      color: white;
     }
     @media screen and (max-width: 1024px) {
       .display-1 { font-size: 3rem }
@@ -61,9 +76,19 @@ box-shadow: 0 2.5rem 1.5rem -1.5rem rgba(0,0,0,.125);
       .section { margin: 2rem 0 }
     }
     </style>
+
+    <link rel="shortcut icon" href="/favicon.png">
   </head>
   <body>
+
     <div class="wrapper" style="width: 100%;">
+      <div class="jumbotron text-xs-center">
+        <div class="container">
+          <h1 class="display-3">Checklists!</h1>
+          <p class="lead">Antes de começar a fazer alguma coisa, verifique se existe uma checklist sobre o assunto.</p>
+          <p><a class="btn btn-lg btn-warning" href="https://github.com/felds/checklists" role="button">Veja as checklists</a></p>
+        </div>
+      </div>
 
       <div class="container">
         <section class="section section__clients">
@@ -84,7 +109,7 @@ box-shadow: 0 2.5rem 1.5rem -1.5rem rgba(0,0,0,.125);
           </div>
         </section>
 
-        <section class="section section__clients">
+        <section class="section section__tools">
           <h1 class="display-4">Ferramentas</h1>
           <div class="row">
             <?php foreach ($tools as $tool => $links): ?>
@@ -99,6 +124,21 @@ box-shadow: 0 2.5rem 1.5rem -1.5rem rgba(0,0,0,.125);
                 </div>
               </div>
             <?php endforeach; ?>
+          </div>
+        </section>
+
+        <section class="section section__sandbox">
+          <h1 class="display-4">Experiências</h1>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="card card-block card-inverse card-reverse" style="background-color: #333; border-color: #333;">
+                  <ul class="list-unstyled">
+                    <?php foreach ($sandbox as $caption => $url): ?>
+                      <li><a href="<?= e($url) ?>" class="card-link"><?= e($caption) ?></a></li>
+                    <?php endforeach; ?>
+                  </ul>
+                </div>
+              </div>
           </div>
         </section>
       </div>
